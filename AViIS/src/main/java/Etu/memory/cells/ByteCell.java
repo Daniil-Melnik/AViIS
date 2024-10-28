@@ -1,9 +1,9 @@
 package Etu.memory.cells;
 
 public class ByteCell {
-    private byte value;
+    private int value;
 
-    public ByteCell(byte val){
+    public ByteCell(int val){
         value = val;
     }
 
@@ -13,10 +13,11 @@ public class ByteCell {
 
     public String getStrValue(){
         String binaString = Integer.toBinaryString(value);
-        while (binaString.length() != 8){
+        while (binaString.length() < 8){
             binaString = "0" + binaString;
         }
         return binaString;
+        // return (value + "");
     }
 
     public int getValue(){

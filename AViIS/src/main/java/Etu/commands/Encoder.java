@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Encoder {
     public Register32 encodeCommand(String command){
-        byte [] cell = new byte[4];
+        int [] cell = new int[4];
         Operands op = new Operands();
         String[] sp = command.split("\\s+");
         String operands = op.getOperands(sp[0], sp[1], sp[2], sp[3]);
@@ -19,7 +19,7 @@ public class Encoder {
         for (int i = 0; i < 4; i++) {
             substrings[i] = operands.substring(i * 8, (i + 1) * 8);
             System.out.print(substrings[i] + " ");
-            cell[i] = (byte) Integer.parseInt(substrings[i], 2);
+            cell[i] = Integer.parseInt(substrings[i], 2);
             res.add(new ByteCell(cell[i]));
         }
         System.out.println();

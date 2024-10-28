@@ -1,8 +1,8 @@
 package Etu.cpu;
 
-import Etu.memory.Memory;
+//import Etu.memory.Memory;
 
 public class CPU {
-    private Memory memory = new Memory(); // память
+    //private Memory memory = new Memory(); // память
     
 }

@@ -3,6 +3,7 @@ package Etu.memory;
 import java.util.ArrayList;
 
 import Etu.memory.cells.ByteCell;
+import Etu.memory.registers.Register32;
 
 public class Memory {
     private static final int SIZE = 100;
@@ -20,10 +21,24 @@ public class Memory {
     }
 
     public void addCommandToMem(){
-        
+
     }
 
-    public static void replaceElements(ArrayList<String> list, int startIndex, ArrayList<String> newElements) {
+    public void writeCommandToMemory(Register32 commandReg){
+        replaceElements(bytes, cursor, commandReg.getBytes());
+        cursor += 4;
+    }
+
+    public void showMemory(){
+        ByteCell bc;
+        for (int i = 0; i < 20; i++){
+            if (i % 4 == 0) System.out.println();
+            bc = bytes.get(i);
+            System.out.print(bc.getStrValue() + " ");
+        }
+    }
+
+    public void replaceElements(ArrayList<ByteCell> list, int startIndex, ArrayList<ByteCell> newElements) {
         // Проверяем, что индекс и размер списка позволяют выполнить замену
         if (startIndex < 0 || startIndex + newElements.size() > list.size()) {
             throw new IndexOutOfBoundsException("Неверный индекс для замены.");
