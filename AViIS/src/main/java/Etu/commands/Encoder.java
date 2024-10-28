@@ -1,17 +1,19 @@
 package Etu.commands;
 
-import Etu.intructions.Special;
 import Etu.memory.cells.ByteCell;
+import Etu.memory.registers.Register32;
+
 import java.util.ArrayList;
 
 public class Encoder {
-    public ArrayList<ByteCell> encodeCommand(String command){
+    public Register32 encodeCommand(String command){
         byte [] cell = new byte[4];
         Operands op = new Operands();
         String[] sp = command.split("\\s+");
         String operands = op.getOperands(sp[0], sp[1], sp[2], sp[3]);
         
         ArrayList<ByteCell> res = new ArrayList<>();
+        Register32 regRes;
 
         String[] substrings = new String[4];
         for (int i = 0; i < 4; i++) {
@@ -21,8 +23,8 @@ public class Encoder {
             res.add(new ByteCell(cell[i]));
         }
         System.out.println();
-
-        return res;
+        regRes = new Register32(res);
+        return regRes;
     };
 
     public static void main(){

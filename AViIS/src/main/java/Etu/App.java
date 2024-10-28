@@ -1,7 +1,6 @@
 package Etu;
 
-import java.util.*;
-import Etu.memory.cells.ByteCell;
+import Etu.memory.registers.Register32;
 import Etu.commands.Encoder;
 
 /**
@@ -14,10 +13,7 @@ public class App
     {
         String str = "ADD r1 r2 r3";
         Encoder en = new Encoder();
-        ArrayList<ByteCell> res = en.encodeCommand(str);
-        for (int i = 0; i < 4; i++){
-            ByteCell bc = res.get(i);
-            System.out.println(bc.getStrValue());
-        }
+        Register32 res = en.encodeCommand(str);
+        res.showRegister();
     }
 }
