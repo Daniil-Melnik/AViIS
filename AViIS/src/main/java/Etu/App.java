@@ -5,10 +5,6 @@ import Etu.memory.registers.Register32;
 import Etu.commands.Encoder;
 import Etu.cpu.CPU;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )

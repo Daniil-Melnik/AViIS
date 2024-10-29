@@ -1,6 +1,6 @@
 package Etu.commands;
 
-import Etu.intructions.IntArithmetic;
+import Etu.intructions.OpCodes;
 
 public class Operands {
     public String getOperands(String opMnemo, String reg1, String reg2, String c){
@@ -11,7 +11,7 @@ public class Operands {
         String reg2Num;
         String regCNum;
 
-        opCode = IntArithmetic.valueOf(opMnemo).toString();
+        opCode = OpCodes.valueOf(opMnemo).toString();
 
         if (reg1 != null && reg2 != null && c != null){
             reg1Num = toNBitBinary(reg1, 5);
