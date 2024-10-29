@@ -10,6 +10,12 @@ public class Encoder {
         int [] cell = new int[4];
         Operands op = new Operands();
         String[] sp = command.split("\\s+");
+        String [] toSend = new String[4];
+
+        for (int i = 0; i < 4; i++){
+            toSend[i] = i < sp.length ? sp[i] : null;
+        }
+        
         String operands = op.getOperands(sp[0], sp[1], sp[2], sp[3]);
         
         ArrayList<ByteCell> res = new ArrayList<>();
