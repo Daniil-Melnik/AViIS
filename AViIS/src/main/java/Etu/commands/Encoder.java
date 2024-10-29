@@ -16,7 +16,7 @@ public class Encoder {
             toSend[i] = i < sp.length ? sp[i] : null;
         }
 
-        String operands = op.getOperands(sp[0], sp[1], sp[2], sp[3]);
+        String operands = op.getOperands(toSend[0], toSend[1], toSend[2], toSend[3]);
         
         ArrayList<ByteCell> res = new ArrayList<>();
         Register32 regRes;

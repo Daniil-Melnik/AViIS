@@ -12,6 +12,19 @@ public class Register32 {
         bytes = list;
     }
 
+    public Register32(){
+        ArrayList<ByteCell> bcL = new ArrayList<>();
+        for (int i = 0; i < 4; i++) bcL.add(new ByteCell());
+        bytes = bcL;
+    }
+
+    public Register32(String str){
+        bytes = new ArrayList<>();
+        for (int i = 0; i < 4; i++){
+            bytes.add(new ByteCell(Integer.parseInt(str.substring(i * 8, (i + 1) * 8),2)));
+        }
+    }
+
     public ArrayList<ByteCell> getBytes(){
         return bytes;
     }

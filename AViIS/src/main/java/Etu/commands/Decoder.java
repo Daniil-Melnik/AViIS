@@ -10,7 +10,7 @@ public class Decoder {
 
         int numOper = NumOper.valueOf("r" + opCode).toInt();
 
-        int opCodeInt = Integer.parseInt(opCode);
+        int opCodeInt = Integer.parseInt(opCode, 2);
         int reg1 = -1;
         int reg2 = -1;
         int c = -1;
@@ -38,8 +38,8 @@ public class Decoder {
                 break;
         }
         System.out.println(opCodeInt + " " + reg1 + " " + reg2 + " " + c);
-        System.out.println(opCode + " " + regStr.substring(7, 12) + " " + regStr.substring(12, 17) + " " + regStr.substring(17, 32));
-        regCom.showRegister();
+        //System.out.println(opCode + " " + regStr.substring(7, 12) + " " + regStr.substring(12, 17) + " " + regStr.substring(17, 32));
+        //regCom.showRegister();
         int [] res = {opCodeInt, reg1, reg2, c};
         return res;
     }
