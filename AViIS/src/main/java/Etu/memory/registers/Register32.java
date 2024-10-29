@@ -24,6 +24,10 @@ public class Register32 {
         return res;
     }
 
+    public ByteCell getCell(int n){
+        return (bytes.get(n));
+    }
+
     public void showRegister(){
         for (int i = 0; i < NUMBER_BYTES; i++){
             System.out.print(toNBinaryString(Integer.toBinaryString(bytes.get(i).getValue())) + " ");

@@ -8,25 +8,39 @@ import Etu.memory.registers.Register32;
 public class Memory {
     private static final int SIZE = 100;
     private ArrayList<ByteCell> bytes;
-    private int cursor;
+    private int cursor1;
+    private int cursor2;
 
     public Memory(){
         bytes = new ArrayList<>();
-        cursor = 0;
+        cursor1 = 0;
+        cursor2 = 0;
         for (int i = 0; i < SIZE; i++) bytes.add(new ByteCell());
     }
 
-    public void updCursor(int n){
-        cursor = cursor + n;
-    }
-
-    public void addCommandToMem(){
-
+    public void updCursor2(int n){
+        cursor2 = cursor2 + n;
     }
 
     public void writeCommandToMemory(Register32 commandReg){
-        replaceElements(bytes, cursor, commandReg.getBytes());
-        cursor += 4;
+        replaceElements(bytes, cursor2, commandReg.getBytes());
+        cursor2 += 4;
+    }
+
+    public Register32 readCommandFromMemory(){
+        ArrayList<ByteCell> bcL = new ArrayList<>();
+        Register32 res = null;
+        if (cursor2 > cursor1 || (cursor2 == 0)){
+            bcL.add(bytes.get(cursor1));
+            bcL.add(bytes.get(cursor1 + 1));
+            bcL.add(bytes.get(cursor1 + 2));
+            bcL.add(bytes.get(cursor1 + 3));
+
+            cursor1 += 4;
+            res = new Register32(bcL);
+        }
+
+        return res;
     }
 
     public void showMemory(){

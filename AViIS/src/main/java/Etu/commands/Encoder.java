@@ -18,7 +18,7 @@ public class Encoder {
         String[] substrings = new String[4];
         for (int i = 0; i < 4; i++) {
             substrings[i] = operands.substring(i * 8, (i + 1) * 8);
-            System.out.print(substrings[i] + " ");
+            // System.out.print(substrings[i] + " ");
             cell[i] = Integer.parseInt(substrings[i], 2);
             res.add(new ByteCell(cell[i]));
         }
