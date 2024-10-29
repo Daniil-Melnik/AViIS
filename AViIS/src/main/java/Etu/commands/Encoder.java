@@ -15,7 +15,7 @@ public class Encoder {
         for (int i = 0; i < 4; i++){
             toSend[i] = i < sp.length ? sp[i] : null;
         }
-        
+
         String operands = op.getOperands(sp[0], sp[1], sp[2], sp[3]);
         
         ArrayList<ByteCell> res = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Encoder {
             cell[i] = Integer.parseInt(substrings[i], 2);
             res.add(new ByteCell(cell[i]));
         }
-        System.out.println();
+        //System.out.println();
         regRes = new Register32(res);
         return regRes;
     };

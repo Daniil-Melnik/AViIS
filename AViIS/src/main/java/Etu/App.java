@@ -30,8 +30,8 @@ public class App
         mem.writeCommandToMemory(res);
 
         cpu.step();
-        cpu.step();
-        cpu.step();
+        //cpu.step();
+        //cpu.step();
 
     }
 }

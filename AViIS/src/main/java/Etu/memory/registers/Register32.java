@@ -24,6 +24,15 @@ public class Register32 {
         return res;
     }
 
+    @Override
+    public String toString() {
+        String res = "";
+        for (int i = 0; i < NUMBER_BYTES; i++){
+            res += toNBinaryString(Integer.toBinaryString(bytes.get(i).getValue()));
+        }
+        return res;
+    }
+
     public ByteCell getCell(int n){
         return (bytes.get(n));
     }
