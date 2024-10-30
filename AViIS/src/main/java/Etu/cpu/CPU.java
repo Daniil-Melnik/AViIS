@@ -32,15 +32,24 @@ public class CPU {
     public void step(){
         Register32 regCom;
         regCom = getCommand();
-        int [] params = dc.decodeCommand(regCom);
+        int [] params = dc.decodeCommand(regCom, true);
+
+        int ind;
+
+        if (params[1] >=16){
+            params = dc.decodeCommand(regCom, false);
+            ind = params[1] - 16;
+        }
+        else ind = params[1];
+
         Register32 reSnd = null;
         if (params[0] >= 43 && params[0] <= 56){
             if (params[3] < 16) {
                 reSnd = intRegs.get(params[3]);
             }
             else {reSnd = new Register32(0);}
-            Register32 [] toSend = {intRegs.get(params[1]), intRegs.get(params[2]), reSnd, new Register32(params[3])};
-            intRegs.set(params[1], iMem.execute(params[0], toSend, params[3]));
+            Register32 [] toSend = {intRegs.get(ind), intRegs.get(params[2]), reSnd, new Register32(params[3])};
+            intRegs.set(ind, iMem.execute(params[0], toSend, params[3]));
         }
 
         if (params[0] > 0 && params[0] <= 19){
@@ -48,8 +57,8 @@ public class CPU {
                 reSnd = intRegs.get(params[3]);
             }
             else {reSnd = new Register32(0);}
-            Register32 [] toSend = {intRegs.get(params[1]), intRegs.get(params[2]), reSnd};
-            intRegs.set(params[1], iArit.execute(params[0], toSend, params[3]));
+            Register32 [] toSend = {intRegs.get(ind), intRegs.get(params[2]), reSnd};
+            intRegs.set(ind, iArit.execute(params[0], toSend, params[3]));
         }
 
         if (params[0] > 19 && params[0] <= 32){
@@ -57,8 +66,8 @@ public class CPU {
                 reSnd = intRegs.get(params[3]);
             }
             else {reSnd = new Register32(0);}
-            Register32 [] toSend = {intRegs.get(params[1]), intRegs.get(params[2]), reSnd};
-            intRegs.set(params[1], iLog.execute(params[0], toSend, params[3]));
+            Register32 [] toSend = {intRegs.get(ind), intRegs.get(params[2]), reSnd};
+            intRegs.set(ind, iLog.execute(params[0], toSend, params[3]));
         }
     }
 

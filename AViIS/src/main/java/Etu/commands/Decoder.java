@@ -4,7 +4,7 @@ import Etu.intructions.NumOper;
 import Etu.memory.registers.Register32;
 
 public class Decoder {
-    public int [] decodeCommand(Register32 regCom){
+    public int [] decodeCommand(Register32 regCom, boolean flag){
         String regStr = regCom.toString();
         String opCode = regStr.substring(0,7);
 

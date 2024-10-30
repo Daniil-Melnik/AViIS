@@ -16,7 +16,7 @@ public class Encoder {
             toSend[i] = i < sp.length ? sp[i] : null;
         }
 
-        String operands = op.getOperands(toSend[0], toSend[1], toSend[2], toSend[3]);
+        String operands = op.getOperands(toSend[0], toSend[1], toSend[2], toSend[3], !isInteger(toSend[toSend.length - 1]));
         
         ArrayList<ByteCell> res = new ArrayList<>();
         Register32 regRes;
@@ -32,6 +32,15 @@ public class Encoder {
         regRes = new Register32(res);
         return regRes;
     };
+
+    public static boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str); // Пытаемся преобразовать строку в int
+            return true; // Если успешно, возвращаем true
+        } catch (NumberFormatException e) {
+            return false; // Если возникло исключение, возвращаем false
+        }
+    }
 
     public static void main(){
     }

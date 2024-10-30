@@ -38,6 +38,7 @@ public class App
         // mem.writeCommandToMemory(res);
 
         //mem.showMemory();
+
         cpu.step();
         cpu.step();
         cpu.step();
