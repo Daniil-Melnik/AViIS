@@ -25,6 +25,10 @@ public class App
         res = en.encodeCommand(str);
         mem.writeCommandToMemory(res);
 
+        str = "AND r4 r3 r2";
+        res = en.encodeCommand(str);
+        mem.writeCommandToMemory(res);
+
         // str = "ADD r14 r2 r5";
         // res = en.encodeCommand(str);
         // mem.writeCommandToMemory(res);
@@ -37,6 +41,8 @@ public class App
         cpu.step();
         cpu.step();
         cpu.step();
+        cpu.step();
+
         cpu.showRegisters();
 
         //cpu.step();
