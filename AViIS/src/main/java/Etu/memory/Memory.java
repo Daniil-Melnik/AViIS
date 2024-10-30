@@ -10,11 +10,13 @@ public class Memory {
     private ArrayList<ByteCell> bytes;
     private int cursor1;
     private int cursor2;
+    private int cursor3;
 
     public Memory(){
         bytes = new ArrayList<>();
         cursor1 = 0;
         cursor2 = 0;
+        cursor3 = 0;
         for (int i = 0; i < SIZE; i++) bytes.add(new ByteCell());
     }
 
@@ -22,9 +24,17 @@ public class Memory {
         cursor2 = cursor2 + n;
     }
 
+    public void updCursor3(int n){
+        cursor3 = cursor3 + n;
+    }
+
     public void writeCommandToMemory(Register32 commandReg){
         replaceElements(bytes, cursor2, commandReg.getBytes());
         cursor2 += 4;
+    }
+
+    public void writeWordToMemory(Register32 word, int cursor3){
+        replaceElements(bytes, cursor3, word.getBytes());
     }
 
     public Register32 readCommandFromMemory(){
@@ -45,7 +55,7 @@ public class Memory {
 
     public void showMemory(){
         ByteCell bc;
-        for (int i = 0; i < 20; i++){
+        for (int i = 0; i < 28; i++){
             if (i % 4 == 0) System.out.println();
             bc = bytes.get(i);
             System.out.print(bc.getStrValue() + " ");

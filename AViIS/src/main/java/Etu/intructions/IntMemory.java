@@ -6,6 +6,10 @@ public class IntMemory {
     public Register32 execute(int opCode, Register32 [] reg, int cnst){
         String str;
         switch (opCode) {
+            case 49:
+                reg[0] = reg[0];
+                break;
+
             case 52:
                 str = Integer.toBinaryString(cnst);
                 reg[0] = new Register32(toNBiinaryStr(str));
