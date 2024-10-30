@@ -19,7 +19,14 @@ public class ByteCell {
         return binaString;
         // return (value + "");
     }
-
+    public String toString(){
+        String str = Integer.toBinaryString(value);
+        while (str.length() < 8){
+            str = "0" + str;
+        }
+        return str;
+    }
+    
     public int getValue(){
         return value;
     }

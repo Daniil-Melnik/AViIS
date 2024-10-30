@@ -3,6 +3,7 @@ package Etu.cpu;
 import java.util.ArrayList;
 
 import Etu.commands.Decoder;
+import Etu.intructions.IntArithmetic;
 import Etu.intructions.IntMemory;
 import Etu.memory.Memory;
 import Etu.memory.registers.Register32;
@@ -16,6 +17,7 @@ public class CPU {
     private ArrayList<Register32> floatRegs;
     private Decoder dc = new Decoder();
     private IntMemory iMem = new IntMemory();
+    private IntArithmetic iArit = new IntArithmetic();
 
     public CPU(Memory mem){
         memory = mem;
@@ -29,9 +31,23 @@ public class CPU {
         Register32 regCom;
         regCom = getCommand();
         int [] params = dc.decodeCommand(regCom);
+        Register32 reSnd = null;
         if (params[0] >= 43 && params[0] <= 56){
-            Register32 [] toSend = {intRegs.get(params[1])};
+            if (params[3] < 16) {
+                reSnd = intRegs.get(params[3]);
+            }
+            else {reSnd = new Register32(0);}
+            Register32 [] toSend = {intRegs.get(params[1]), intRegs.get(params[2]), reSnd, new Register32(params[3])};
             intRegs.set(params[1], iMem.execute(params[0], toSend, params[3]));
+        }
+
+        if (params[0] > 0 && params[0] <= 19){
+            if (params[3] < 16) {
+                reSnd = intRegs.get(params[3]);
+            }
+            else {reSnd = new Register32(0);}
+            Register32 [] toSend = {intRegs.get(params[1]), intRegs.get(params[2]), reSnd};
+            intRegs.set(params[1], iArit.execute(params[0], toSend, params[3]));
         }
     }
 

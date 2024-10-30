@@ -12,9 +12,17 @@ public class App
         Memory mem = new Memory();
         CPU cpu = new CPU(mem);
 
-        String str = "LI r3 100";
+        String str = "LI r1 1";
         Encoder en = new Encoder();
         Register32 res = en.encodeCommand(str);
+        mem.writeCommandToMemory(res);
+
+        str = "LI r2 2";
+        res = en.encodeCommand(str);
+        mem.writeCommandToMemory(res);
+
+        str = "ADD r3 r1 r2";
+        res = en.encodeCommand(str);
         mem.writeCommandToMemory(res);
 
         // str = "ADD r14 r2 r5";
@@ -25,6 +33,9 @@ public class App
         // res = en.encodeCommand(str);
         // mem.writeCommandToMemory(res);
 
+        //mem.showMemory();
+        cpu.step();
+        cpu.step();
         cpu.step();
         cpu.showRegisters();
 

@@ -29,6 +29,32 @@ public class Register32 {
         return bytes;
     }
 
+    public Register32(int var){
+        String str = toNBinaryStringM(Integer.toBinaryString(var));
+        bytes = new ArrayList<>();
+        for (int i = 0; i < 4; i++){
+            bytes.add(new ByteCell(Integer.parseInt(str.substring(i * 8, (i + 1) * 8),2)));
+        }
+    }
+
+    public int toIntValue(){
+        String str = "";
+        for (int i = 0; i < 4; i++){
+            str += bytes.get(i).toString();
+        }
+        //System.out.println(str);
+        return Integer.parseInt(str,2);
+        //return 0;
+    }
+
+    public String toNBinaryStringM(String str){
+        String res = str;
+        while (res.length() < 32) {
+            res = "0" + res;
+        }
+        return res;
+    }
+
     public String toNBinaryString(String str){
         String res = str;
         while (res.length() < 8) {
